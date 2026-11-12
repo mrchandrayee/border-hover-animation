@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #050720;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  padding: 24px;
+}
+
+h1 {
+  padding: 7px 15px;
+  border-radius: 6px;
+  background: #8755f6;
+  font-size: clamp(18px, 3vw, 27px);
+  font-weight: 500;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 170px;
+}
+
+.hover-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  color: #fff;
+  background: #292929;
+  font-size: 20px;
+  text-decoration: none;
+  isolation: isolate;
+  outline: none;
+}
+
+.hover-link::before,
+.hover-link::after {
+  position: absolute;
+  content: "";
+  z-index: -1;
+  pointer-events: none;
+  transition: width .3s ease-in-out, height .3s ease-in-out,
+              left .3s ease-in-out, top .3s ease-in-out,
+              border-color .3s ease-in-out;
+}
+
+/* Vertical edges grow outwards from the centre. */
+.hover-link::before {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+}
+
+/* Horizontal edges grow from the centre. */
+.hover-link::after {
+  width: 100%;
+  height: 0;
+  top: 50%;
+  left: 0;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+.hover-link:hover::before,
+.hover-link:focus-visible::before {
+  width: 100%;
+  left: 0;
+  border-color: #fff;
+}
+
+.hover-link:hover::after,
+.hover-link:focus-visible::after {
+  height: 100%;
+  top: 0;
+  border-color: #fff;
+}
+
+.hover-link span {
+  transition: color .25s ease;
+}
+
+.hover-link:hover span,
+.hover-link:focus-visible span {
+  color: #fff;
+}
+
+.hint {
+  color: #85879e;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .hover-link { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-link::before,
+  .hover-link::after,
+  .hover-link span { transition: none; }
+}
